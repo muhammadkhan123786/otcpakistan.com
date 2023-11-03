@@ -146,7 +146,32 @@ class TitlesManagementController extends Controller
 
         return redirect()->route('school-title.index')->with('message','The Title '.$request->titleName.' updated successfully.');
     }
+    public function destroy($titleId)
+    {
+        $title= SchoolBookTitles::where([
+            ['school_id','=',Session::get('user_details')['school_id']],
+            ['schoolregister_id','=',Session::get('user_details')['school_reg_id']],
+            ['user_id','=',Session::get('user_details')['user_id']],
+            ['school_titles_isDeleted','=',false],
+            ['school_titles_id','=',$titleId]
+        ])->first();
 
+        if (!empty($title)) {
+            $title->school_titles_isDeleted=true;
+            $title->save();
+            return response()->json([
+                'flag' => true,
+                'message' => 'The title '.$title->school_title_name.' has been deleted successfully.'
+                    ], 200);
+        }
+        else {
+            return response()->json([
+                        'flag' => false,
+                        'message' => 'Title Not Found.'
+            ]);
+        }
+
+    }
 
 
 }
