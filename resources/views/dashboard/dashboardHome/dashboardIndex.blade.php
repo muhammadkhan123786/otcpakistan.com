@@ -1,7 +1,7 @@
 
 @extends('dashboard.layouts.main')
 @push('title')
-  <title> Dasboard Home. </title>
+  <title> Dashboard Home. </title>
 @endpush
 
 @section('main-content')

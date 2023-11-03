@@ -34,3 +34,4 @@
 <script src="{{ asset("dashboardstyles/js/dashboard.js")}}"></script>
 <script src="{{ asset("dashboardstyles/js/Chart.roundedBarCharts.js")}}"></script>
 <!-- End custom js for this page-->
+

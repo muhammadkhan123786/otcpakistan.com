@@ -228,102 +228,102 @@
                 </a>
               </li>
           @elseif(\Auth::user()->role_id==3)
-              <li class="nav-item">
+
+          <li class="nav-item">
                 <a class="nav-link" href="{{route('dashboard.index')}}">
+                    <i class="icon-grid menu-icon"></i>
                   <span class="menu-title"> Home</span>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#ui-staff" aria-expanded="false" aria-controls="ui-staff">
-                  <i class="icon-layout menu-icon"> </i>
-                  <span class="menu-title">Staff Management</span>
-                  <i class="menu-arrow" style="padding-left: 5px"> </i>
-                </a>
-                <div class="collapse" id="ui-staff">
-                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#"> Attendance Status </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#"> All Staff </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#"> Calculate Salary </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#"> Staff Attendance </a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#ui-students" aria-expanded="false" aria-controls="ui-basic">
-                  <i class="icon-layout menu-icon"></i>
-                  <span class="menu-title">Students Management</span>
-                  <i class="menu-arrow" style="padding-left: 5px"></i>
-                </a>
-                <div class="collapse" id="ui-students">
-                  <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#"> Online Students </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#"> School Students </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#"> Generate Report </a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="menu-title"> Accounts Management </span>
-                </a>
-              </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-staff" aria-expanded="false" aria-controls="ui-staff">
+                <i class="icon-grid menu-icon"></i>
+                <span>Staff Management</span>
+                <i class="menu-arrow"> </i>
+            </a>
+            <div class="collapse" id="ui-staff">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="#"> Attendance Status </a></li>
+                <li class="nav-item"> <a class="nav-link" href="#"> All Staff </a></li>
+                <li class="nav-item"> <a class="nav-link" href="#"> Calculate Salary </a></li>
+                <li class="nav-item"> <a class="nav-link" href="#"> Staff Attendance </a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-students" aria-expanded="false" aria-controls="ui-staff">
+                <i class="icon-grid menu-icon"></i>
+              <span>Student Management</span>
+              <i class="menu-arrow"> </i>
+            </a>
+            <div class="collapse" id="ui-students">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="#"> Attendance Status </a></li>
+                <li class="nav-item"> <a class="nav-link" href="#"> All Staff </a></li>
+                <li class="nav-item"> <a class="nav-link" href="#"> Calculate Salary </a></li>
+                <li class="nav-item"> <a class="nav-link" href="#"> Staff Attendance </a></li>
+              </ul>
+            </div>
+          </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="menu-title"> Past Board Examination </span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="menu-title"> Create Examination  </span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="menu-title"> Classes Management  </span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="menu-title"> Staff Management  </span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span class="menu-title"> Challans Management  </span>
-                </a>
-              </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title"> Accounts Management </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="icon-grid menu-icon"></i>
+              <span> Past Board Examination </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="icon-grid menu-icon"></i>
+              <span> Create Examination  </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('school-class.index')}}">
+                <i class="icon-grid menu-icon"></i>
+              <span> Classes Management  </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('school-session.index')}}">
+                <i class="icon-grid menu-icon"></i>
+              <span> Sessions Management </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('school-publisher.index')}}">
+                <i class="icon-grid menu-icon"></i>
+              <span> Publishers Management </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('school-title.index')}}">
+                <i class="icon-grid menu-icon"></i>
+              <span> Titles Management </span>
+            </a>
+          </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="#">
 
-                  <span class="menu-title"> Inqueries</span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="{{route('school-session.index')}}">
-                  <span class="menu-title"> Sessions Management </span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-
-                  <span class="menu-title"> Settings</span>
-                </a>
-              </li>
 
         @endif
 
         @if (\Auth::user())
         <li class="nav-item">
             <a class="nav-link" href="{{route('change.password')}}">
-              <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Change password</span>
+                <i class="icon-grid menu-icon"></i>
+                <span>Change password</span>
             </a>
           </li>
 
         @endif
         </ul>
     </nav>
+<script type="text/javascript">
+
+</script>

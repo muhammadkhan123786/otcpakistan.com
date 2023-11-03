@@ -1,25 +1,54 @@
 @extends('dashboard.layouts.main')
 
 @push('title')
-  <title> {{Session::get('user_details')['schoolName']}} Session Index. </title>
+  <title> {{Session::get('user_details')['schoolName']}} Titles Index. </title>
 @endpush
 
 @section('main-content')
 <div style="padding-top: 50px;" class="container">
-    <div style="padding-bottom: 30px;">
-        <a href="{{route('school-session.add')}}" class="btn btn-primary">+ Add New Session</a>
-     </div>
+    <div class='row py-2'>
+        <div class='col-md-4'>
+           <div style="padding-bottom: 30px;">
+               <a href="{{route('school-title.add')}}" class="btn btn-primary">+ Add New Title</a>
+           </div>
+        </div>
+        <div class='col-md-4'>
+           <div class='form-group'>
+             <form action="{{ route('school-title.index') }}" method="GET">
+                 <label for="search" class="sr-only">
+                     Enter Class Name
+                 </label>
+                 <input type="text" name="search"
+                     class="form-control"
+                     placeholder="Search the title."
+                     />
+           </div>
+           @if($search=='')
+
+               You searched nothing.
+
+           @else{
+             You searched for <label class='font-italic font-weight-bold'>{{$search}}</label>
+           }
+           @endif
+
+        </div>
+          <div class="col-md-4">
+           <button type="submit" class='btn btn-primary'> Search </button>
+          </div>
+       </form>
+       </div>
 
         @if(session()->has('message'))
             <div class="alert alert-success">
                 {{session()->get('message') }}
             </div>
         @endif
-        @if($sessions->count()>0)
+        @if($titles->count()>0)
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <p class="card-title">{{Session::get('user_details')['schoolName']}} Sessions</p>
+                <p class="card-title">{{Session::get('user_details')['schoolName']}} Titles.</p>
                 <div class="row">
                   <div class="col-12">
                     <div class="table table-bordered table-responsive">
@@ -27,25 +56,18 @@
                         <thead>
                           <tr>
                             <th>Sr. #</th>
-                            <th> Session Name </th>
-                            <th> Session Start Date</th>
-                            <th> Session End Date </th>
-                            <th> Total Students </th>
-                            <th> Is session Active? </th>
+                            <th> Title Name </th>
+                            <th> Title Status</th>
                             <th> Actions </th>
                           </tr>
                         </thead>
                         <tbody>
-                           @foreach ( $sessions as $session )
+                           @foreach ( $titles as $title )
                             <tr>
-                                <td> {{$session->school_sessions_id}} </td>
-                                <td> {{$session->school_session_name}} </td>
-
-                                <td> {{\Carbon\Carbon::parse($session->school_session_startDate)->format('j F, Y') }} </td>
-                                <td> {{ \Carbon\Carbon::parse($session->school_session_endDate)->format('j F, Y') }} </td>
-                                <td> 100 Students. </td>
+                                <td> {{$title->school_titles_id}} </td>
+                                <td> {{$title->school_title_name}} </td>
                                 <td class="font-weight-medium">
-                                    @if($session->school_session_isActive)
+                                    @if($title->school_titles_isActive)
 
                                         <div class="badge badge-success">Active</div>
 
@@ -55,9 +77,8 @@
                                     @endif
 
                                 <td class='embed-responsive'>
-                                    <a class="btn btn-primary" href="{{route('school-session.Edit',$session->school_sessions_id)}}" >Edit</a>|
-                                    <a class="btn btn-danger" onclick="deleteGroup({{$session->school_sessions_id}},'{{$session->school_session_name}}')">Delete</a>|
-                                    <a class="btn btn-success" href="{{route('school-session.details',$session->school_sessions_id)}}">Details</a>
+                                    <a class="btn btn-primary" href="{{route('school-title.edit',$title->school_titles_id)}}" >Edit</a>|
+                                    <a class="btn btn-danger" onclick="deleteGroup({{$title->school_titles_id}},'{{$title->school_title_name}}')">Delete</a>|
 
                                 </td>
 
@@ -66,6 +87,9 @@
                            @endforeach
                         </tbody>
                     </table>
+                    <div style="padding-top: 10px">
+                        {!! $titles->links() !!}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -75,7 +99,7 @@
           </div>
 
         @else
-        <h2>No any Session exists. </h2>
+        <h2>No any title exists. </h2>
 
         @endif
     </div>
@@ -83,10 +107,10 @@
 @endsection
 @push('scripts')
 <script type="text/javascript">
-    function deleteGroup($sessionId,$sessionName) {
-        if (confirm("Are you sure you want to delete this session ? "+$sessionName)) {
-            var url = "{{ route('school-session.destroy', ":sessionId") }}";
-            url = url.replace(':sessionId', $sessionId);
+    function deleteGroup($titleId,$titleName) {
+        if (confirm("Are you sure you want to delete this title ? "+$titleName)) {
+            var url = "{{ route('school-title.destroy', ":titleId") }}";
+            url = url.replace(':titleId', $titleId);
             $.ajax({
                             type: "GET",
                             enctype: 'multipart/form-data',

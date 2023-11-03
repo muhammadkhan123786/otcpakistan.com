@@ -7,6 +7,9 @@ use App\Http\Controllers\Frontend\dashboard\StudentCompetitionController;
 use App\Http\Controllers\Frontend\dashboard\StudentresultsController;
 use App\Http\Controllers\Frontend\dashboard\SchoolRegisterationController;
 use App\Http\Controllers\Frontend\dashboard\SchoolSessionsManagementController;
+use App\Http\Controllers\Frontend\dashboard\SchoolClassesManagementController;
+use App\Http\Controllers\Frontend\dashboard\SchoolpublishersManagementController;
+use App\Http\Controllers\Frontend\dashboard\TitlesManagementController;
 
 
 
@@ -57,13 +60,71 @@ Route::controller(StudentsController::class)->group(function(){
 
 //end student controller routes.
 
+//Titles route
+Route::controller(TitlesManagementController::class)->group(function(){
+
+    Route::get('school-title','index')->name('school-title.index');
+    Route::get('school-title-add','add')->name('school-title.add');
+    Route::get('school-title-edit/{titleId}','edit')->name('school-title.edit');
+    Route::get('school-title-delete/{titleId}','destroy')->name('school-title.destroy');
+   // Route::get('school-publisher-details/{publisherId}','details')->name('school-publisher.details');
+
+
+    Route::post('school-title-store','store')->name('school-title.store');
+    Route::post('school-title-update/{titleId}','update')->name("school-title.update");
+
+});
+
+
+//end titles route..
+
+
+//Publishers management
+
+Route::controller(SchoolpublishersManagementController::class)->group(function(){
+
+     Route::get('school-publisher','index')->name('school-publisher.index');
+     Route::get('school-publisher-add','add')->name('school-publisher.add');
+     Route::get('school-publisher-edit/{publisherId}','edit')->name('school-publisher.edit');
+     Route::get('school-publisher-delete/{publisherId}','destroy')->name('school-publisher.destroy');
+     Route::get('school-publisher-details/{publisherId}','details')->name('school-publisher.details');
+
+
+    Route::post('school-publisher-store','store')->name('school-publisher.store');
+    Route::post('school-publisher-update/{publisherId}','update')->name("school-publisher.update");
+
+});
+
+
+//publisher management end.
+
+//School Class routes
+
+Route::controller(SchoolClassesManagementController::class)->group(function(){
+
+    Route::get('school-class','index')->name('school-class.index');
+    Route::get('school-class-add','add')->name('school-class.add');
+    Route::get('school-class-edit/{classId}','Edit')->name('school-class.edit');
+    Route::get('school-class-delete/{classId}','destroy')->name('school-class.destroy');
+
+
+    Route::post('school-class-store','store')->name('school-class.store');
+    Route::post('school-class-update/{classId}','update')->name("school-class.update");
+
+});
+
+//school class route end.
+
 //School sessions
 Route::controller(SchoolSessionsManagementController::class)->group(function(){
     Route::get('school-session','index')->name('school-session.index');
     Route::get('school-session-add','add')->name('school-session.add');
+    Route::get('school-session-edit/{sessionId}','Edit')->name('school-session.Edit');
+    Route::get('school-session-delete/{sessionId}','destroy')->name('school-session.destroy'); //done.
+    Route::get('school-session-details/{sessionId}','details')->name('school-session.details');
 
     Route::post('school-session-store','store')->name('school-session.store');
-
+    Route::post('school-session-update/{sessionId}','update')->name('school-session.update');
 
 });
 

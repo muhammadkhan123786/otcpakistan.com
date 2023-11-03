@@ -1,25 +1,54 @@
 @extends('dashboard.layouts.main')
 
 @push('title')
-  <title> {{Session::get('user_details')['schoolName']}} Session Index. </title>
+  <title>{{Session::get('user_details')['schoolName']}} School Class Index. </title>
 @endpush
 
 @section('main-content')
+<body>
 <div style="padding-top: 50px;" class="container">
-    <div style="padding-bottom: 30px;">
-        <a href="{{route('school-session.add')}}" class="btn btn-primary">+ Add New Session</a>
+    <div class='row py-2'>
+     <div class='col-md-4'>
+        <div style="padding-bottom: 30px;">
+            <a href="{{route('school-class.add')}}" class="btn btn-primary">+ Add New Class</a>
+        </div>
      </div>
+     <div class='col-md-4'>
+        <div class='form-group'>
+          <form action="{{ route('school-class.index') }}" method="GET">
+              <label for="search" class="sr-only">
+                  Enter Class Name
+              </label>
+              <input type="text" name="search"
+                  class="form-control"
+                  placeholder="Search..."
+                  />
+        </div>
+        @if($search=='')
 
+            You searched nothing.
+
+        @else{
+          You searched for <label class='font-italic font-weight-bold'>{{$search}}</label>
+        }
+        @endif
+
+     </div>
+       <div class="col-md-4">
+        <button type="submit" class='btn btn-primary'> Search </button>
+       </div>
+    </form>
+    </div>
         @if(session()->has('message'))
             <div class="alert alert-success">
                 {{session()->get('message') }}
             </div>
         @endif
-        @if($sessions->count()>0)
+        @if($classes->count()>0)
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <p class="card-title">{{Session::get('user_details')['schoolName']}} Sessions</p>
+                <p class="card-title"> {{Session::get('user_details')['schoolName']}} School Classes </p>
                 <div class="row">
                   <div class="col-12">
                     <div class="table table-bordered table-responsive">
@@ -27,25 +56,23 @@
                         <thead>
                           <tr>
                             <th>Sr. #</th>
-                            <th> Session Name </th>
-                            <th> Session Start Date</th>
-                            <th> Session End Date </th>
-                            <th> Total Students </th>
+                            <th> Class Name </th>
+                            <th> Fee Collections </th>
+                            <th> Active Students </th>
+
                             <th> Is session Active? </th>
                             <th> Actions </th>
                           </tr>
                         </thead>
                         <tbody>
-                           @foreach ( $sessions as $session )
+                           @foreach ( $classes as $class )
                             <tr>
-                                <td> {{$session->school_sessions_id}} </td>
-                                <td> {{$session->school_session_name}} </td>
-
-                                <td> {{\Carbon\Carbon::parse($session->school_session_startDate)->format('j F, Y') }} </td>
-                                <td> {{ \Carbon\Carbon::parse($session->school_session_endDate)->format('j F, Y') }} </td>
+                                <td> {{$class->school_class_id}} </td>
+                                <td> {{$class->school_class_name}} </td>
+                                <td> 1000. </td>
                                 <td> 100 Students. </td>
                                 <td class="font-weight-medium">
-                                    @if($session->school_session_isActive)
+                                    @if($class->school_class_isActive)
 
                                         <div class="badge badge-success">Active</div>
 
@@ -55,9 +82,8 @@
                                     @endif
 
                                 <td class='embed-responsive'>
-                                    <a class="btn btn-primary" href="{{route('school-session.Edit',$session->school_sessions_id)}}" >Edit</a>|
-                                    <a class="btn btn-danger" onclick="deleteGroup({{$session->school_sessions_id}},'{{$session->school_session_name}}')">Delete</a>|
-                                    <a class="btn btn-success" href="{{route('school-session.details',$session->school_sessions_id)}}">Details</a>
+                                    <a class="btn btn-primary" href="{{route('school-class.edit',$class->school_class_id)}}" >Edit</a>|
+                                    <a class="btn btn-danger" onclick="deleteClass({{$class->school_class_id}},'{{$class->school_class_name}}')">Delete</a>
 
                                 </td>
 
@@ -66,27 +92,38 @@
                            @endforeach
                         </tbody>
                     </table>
-                    </div>
+                  <div style="padding-top: 10px">
+                    {!! $classes->links() !!}
                   </div>
+
+                    </div>
+
+                  </div>
+
+
                 </div>
                 </div>
+
               </div>
             </div>
+
+
           </div>
 
+
         @else
-        <h2>No any Session exists. </h2>
+        <h2>No any Class exists. </h2>
 
         @endif
     </div>
-
+  </body>
 @endsection
 @push('scripts')
 <script type="text/javascript">
-    function deleteGroup($sessionId,$sessionName) {
-        if (confirm("Are you sure you want to delete this session ? "+$sessionName)) {
-            var url = "{{ route('school-session.destroy', ":sessionId") }}";
-            url = url.replace(':sessionId', $sessionId);
+    function deleteClass($classId,$className) {
+        if (confirm("Are you sure you want to delete this class ? "+$className)) {
+            var url = "{{ route('school-class.destroy', ":classId") }}";
+            url = url.replace(':classId', $classId);
             $.ajax({
                             type: "GET",
                             enctype: 'multipart/form-data',
@@ -104,11 +141,9 @@
                                 console.log(response);
                             }
                         });
-
-
-
         }
     }
+
     </script>
 
 
