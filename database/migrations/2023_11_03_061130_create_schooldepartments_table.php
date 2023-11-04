@@ -14,7 +14,18 @@ class CreateSchooldepartmentsTable extends Migration
     public function up()
     {
         Schema::create('schooldepartments', function (Blueprint $table) {
-            $table->increments('school_titles_id');
+            $table->increments('school_department_id');
+
+            $table->unsignedBigInteger('school_id')->default(0);
+            $table->unsignedBigInteger('schoolregister_id')->default(0);
+            $table->unsignedBigInteger('user_id')->default(0);
+
+            $table->string('school_department_name')->nullable();
+            $table->boolean('school_department_isActive')->default(true);
+            $table->boolean('school_department_isDeleted')->default(false);
+
+
+
 
             $table->timestamps();
         });

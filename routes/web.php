@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\dashboard\SchoolSessionsManagementController;
 use App\Http\Controllers\Frontend\dashboard\SchoolClassesManagementController;
 use App\Http\Controllers\Frontend\dashboard\SchoolpublishersManagementController;
 use App\Http\Controllers\Frontend\dashboard\TitlesManagementController;
+use App\Http\Controllers\Frontend\dashboard\DepartmentsManagementController;
 
 
 
@@ -59,6 +60,23 @@ Route::controller(StudentsController::class)->group(function(){
 
 
 //end student controller routes.
+//School Department...
+Route::controller(DepartmentsManagementController::class)->group(function(){
+
+    Route::get('school-department','index')->name('school-department.index');
+    Route::get('school-department-add','add')->name('school-department.add');
+    Route::get('school-department-edit/{departmentId}','edit')->name('school-department.edit');
+    Route::get('school-department-delete/{departmentId}','destroy')->name('school-department.destroy');
+   // Route::get('school-publisher-details/{publisherId}','details')->name('school-publisher.details');
+
+
+    Route::post('school-department-store','store')->name('school-department.store');
+    Route::post('school-department-update/{departmentId}','update')->name("school-department.update");
+
+});
+
+//End school Departments.
+
 
 //Titles route
 Route::controller(TitlesManagementController::class)->group(function(){

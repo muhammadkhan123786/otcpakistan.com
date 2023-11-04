@@ -308,6 +308,13 @@
               <span> Titles Management </span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('school-department.index')}}">
+                <i class="icon-grid menu-icon"></i>
+              <span> Department Management </span>
+            </a>
+          </li>
+
 
 
 
