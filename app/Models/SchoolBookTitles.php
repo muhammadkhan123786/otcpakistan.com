@@ -9,6 +9,7 @@ class SchoolBookTitles extends Model
 {
     use HasFactory;
     protected $primaryKey='school_titles_id';
+    protected $table = 'school_book_titles';
 
     protected $fillable = [
 
@@ -20,4 +21,6 @@ class SchoolBookTitles extends Model
         'school_title_name',
 
     ];
+
+
 }

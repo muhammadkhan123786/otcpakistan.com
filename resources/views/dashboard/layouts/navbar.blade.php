@@ -314,6 +314,13 @@
               <span> Department Management </span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('school.prices.index')}}">
+                <i class="icon-grid menu-icon"></i>
+              <span> Prices Management </span>
+            </a>
+          </li>
+
 
 
 

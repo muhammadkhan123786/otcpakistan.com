@@ -9,6 +9,7 @@ class Schooldepartment extends Model
 {
     use HasFactory;
     protected $primaryKey='school_department_id';
+    protected $table = 'schooldepartments';
     protected $fillable = [
         'school_id',
         'schoolregister_id',

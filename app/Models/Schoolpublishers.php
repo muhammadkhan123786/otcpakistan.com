@@ -10,6 +10,7 @@ class Schoolpublishers extends Model
     use HasFactory;
 
     protected $primaryKey='school_publisher_id';
+    protected $table = 'schoolpublishers';
 
     protected $fillable = [
         'school_id',
@@ -24,5 +25,8 @@ class Schoolpublishers extends Model
         'school_publisher_website',
         'school_publisher_whatsapp_number',
     ];
+
+
+
 
 }

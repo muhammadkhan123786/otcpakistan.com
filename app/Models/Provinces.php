@@ -10,6 +10,8 @@ class Provinces extends Model
 
     use HasFactory;
     protected $primaryKey='provinceId';
+    protected $table = 'provinces';
+
     protected $fillable = [
         'provinceName',
         'is_provinceDeleted',

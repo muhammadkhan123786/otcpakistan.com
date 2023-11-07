@@ -11,6 +11,8 @@ use App\Http\Controllers\Frontend\dashboard\SchoolClassesManagementController;
 use App\Http\Controllers\Frontend\dashboard\SchoolpublishersManagementController;
 use App\Http\Controllers\Frontend\dashboard\TitlesManagementController;
 use App\Http\Controllers\Frontend\dashboard\DepartmentsManagementController;
+use App\Http\Controllers\Frontend\dashboard\PricesManagementController;
+
 
 
 
@@ -31,6 +33,17 @@ use App\Http\Controllers\Frontend\dashboard\StudentsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::controller(PricesManagementController::class)->group(function(){
+    //Get methods
+    Route::get('school-prices-management','index')->name('school.prices.index'); //done
+    Route::get('add-class-prices','add')->name('school.prices.add'); //done.
+
+    Route::post('store-class-prices','store')->name('school.prices.store');
+
+});
+
+//Prices Management
+
 Route::controller(DashboardHomeController::class)->group(function(){
     //Get methods
     Route::get('/dashboardhome','index')->name('dashboard.index'); //done
@@ -39,6 +52,9 @@ Route::controller(DashboardHomeController::class)->group(function(){
     //Post methods
     Route::post('update-password','updatePassword')->name('update.password');
 });
+
+
+//end prices management
 
 //Student controller routes
 
